@@ -8,4 +8,17 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="AIComponent\TrainingBehavior\" />
+    <Folder Include="AIComponent\Service\" />
+    <Folder Include="DpComponent\SQLDpService\" />
+    <Folder Include="VisualComponent\Control\" />
+    <Folder Include="VisualComponent\Model\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastHotKeyForWPF" Version="2.3.0" />
+    <PackageReference Include="MinimalisticWPF" Version="1.8.8" />
+  </ItemGroup>
+
 </Project>
