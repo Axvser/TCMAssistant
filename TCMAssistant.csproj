@@ -9,8 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FastHotKeyForWPF" Version="2.3.0" />
-    <PackageReference Include="MinimalisticWPF" Version="1.8.8" />
+    <PackageReference Include="FastHotKeyForWPF" Version="2.3.1" />
+    <PackageReference Include="MinimalisticWPF" Version="1.8.9" />
   </ItemGroup>
 
 </Project>
