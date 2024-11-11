@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿global using MinimalisticWPF;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,9 +12,6 @@ using System.Windows.Shapes;
 
 namespace TCMAssistant
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()

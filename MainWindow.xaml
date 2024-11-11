@@ -4,9 +4,19 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TCMAssistant"
+        xmlns:mn="clr-namespace:MinimalisticWPF;assembly=MinimalisticWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow"
+        Name="Main"
+        Height="450"
+        Width="800"
+        Background="#1e1e1e"
+        WindowStyle="None"
+        AllowsTransparency="True">
+    <Viewbox>
+        <Grid Width="{Binding ElementName=Main,Path=Width}"
+              Height="{Binding ElementName=Main,Path=Height}">
 
-    </Grid>
+        </Grid>
+    </Viewbox>
 </Window>
