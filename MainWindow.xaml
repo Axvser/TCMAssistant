@@ -16,7 +16,7 @@
     <Viewbox>
         <Grid Width="{Binding ElementName=Main,Path=Width}"
               Height="{Binding ElementName=Main,Path=Height}">
-
+            <mn:MTopBar VerticalAlignment="Top"/>
         </Grid>
     </Viewbox>
 </Window>
