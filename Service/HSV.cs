@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Emgu.CV.Util;
+using System.Windows;
 
 namespace TCMAssistant.Service
 {
@@ -23,19 +25,35 @@ namespace TCMAssistant.Service
         /// <summary>
         /// 色相
         /// </summary>
-        public float H { get; set; } = 0f;
+        public double H { get; set; } = 0;
         /// <summary>
         /// 饱和度
         /// </summary>
-        public float S { get; set; } = 0f;
+        public double S { get; set; } = 0;
         /// <summary>
         /// 亮度
         /// </summary>
-        public float V { get; set; } = 0f;
+        public double V { get; set; } = 0;
 
         public object HSVAssistant(HSV value)
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// 返回一个HSV均值
+        /// </summary>
+        public static HSV Parse(Mat srcMat)
+        {
+            Mat tempMat = srcMat.Clone();
+            Mat hsvMat = new Mat();
+            CvInvoke.CvtColor(tempMat, hsvMat, Emgu.CV.CvEnum.ColorConversion.Bgr2Hsv);
+            Mat[] channels = hsvMat.Split();
+            var result = new HSV();
+            result.H = CvInvoke.Mean(channels[0]).V0;
+            result.S = CvInvoke.Mean(channels[1]).V0;
+            result.V = CvInvoke.Mean(channels[2]).V0;
+            return result;
         }
     }
 }

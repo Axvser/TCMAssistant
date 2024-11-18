@@ -1,4 +1,5 @@
 ﻿global using MinimalisticWPF;
+using OpenCVSharpDemo;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TCMAssistant.Page;
+using TCMAssistant.Service;
 
 namespace TCMAssistant
 {
@@ -19,6 +21,7 @@ namespace TCMAssistant
         {
             InitializeComponent();
             NowPage.Navigate(typeof(ConfigPage));
+            HSV.Parse(FileTool.ImageRead());
         }
 
         private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
