@@ -8,6 +8,6 @@ namespace TCMAssistant.Service
 {
     public interface IAssistant
     {
-        object HSVAssistant(HSV value);
+        object Assistant();
     }
 }

@@ -35,9 +35,40 @@ namespace TCMAssistant.Service
         /// </summary>
         public double V { get; set; } = 0;
 
-        public object HSVAssistant(HSV value)
+        public object Assistant()
         {
-            throw new NotImplementedException();
+            var result = string.Empty;
+
+            if (H > 50)
+            {
+                result += "气血旺盛";
+            }
+            else if (H < 50 && H > 30)
+            {
+                result += "气血";
+            }
+            else if (H < 30)
+            {
+                result += "气血";
+            }
+            else if (S > 0)
+            {
+                result += "湿气";
+            }
+            else if (S > 0)
+            {
+                result += "湿气";
+            }
+            else if (V > 0)
+            {
+                result += "";
+            }
+            else if (V > 0)
+            {
+                result += "";
+            }
+
+            return result;
         }
 
         /// <summary>

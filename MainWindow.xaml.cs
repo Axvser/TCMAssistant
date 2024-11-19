@@ -21,7 +21,9 @@ namespace TCMAssistant
         {
             InitializeComponent();
             NowPage.Navigate(typeof(ConfigPage));
-            HSV.Parse(FileTool.ImageRead());
+            var r=HSV.Parse(FileTool.ImageRead()).Assistant();
+            MessageBox.Show($"{r}");
+            //MessageBox.Show($"{r.H}\n{r.S}\n{r.V}");
         }
 
         private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
