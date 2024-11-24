@@ -8,24 +8,34 @@
         mc:Ignorable="d"
         Title="MainWindow"
         Name="Main"
-        Height="540"
-        Width="960"
-        Background="#1e1e1e"
+        Height="960"
+        Width="540"
+        Background="White"
         WindowStyle="None"
         AllowsTransparency="True">
     <Viewbox>
-        <Grid Height="540" Width="960">
-            <mn:MTopBar Title="舌苔云诊" VerticalAlignment="Top"/>
-            <Border x:Name="B1" Margin="0,80,0,455" Width="150" HorizontalAlignment="Left" Background="Cyan"/>
-            <Border x:Name="B2" Margin="150,80,0,455" Width="200" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
-            <Border x:Name="B3" Margin="350,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
-            <Border x:Name="B4" Margin="500,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
-            <Border x:Name="B5" Margin="650,80,0,455" Width="150" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
-            <Border x:Name="B6" Margin="800,80,0,455" Width="160" HorizontalAlignment="Left" Background="Gray" Opacity="0.6"/>
-            <mn:MButton Text="配置" Click="Config_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="0,35,0,0" WiseHeight="40" WiseWidth="150"/>
-            <mn:MButton Text="HSV预测" Click="HSV_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="150,35,0,0" WiseHeight="40" WiseWidth="200"/>
-            <mn:MButton Text="AI预测" Click="AI_Click" VerticalAlignment="Top" HorizontalAlignment="Left" EdgeThickness="0,0,0,1" Margin="350,35,0,0" WiseHeight="40" WiseWidth="150"/>
-            <mn:MNavigateBox x:Name="NowPage" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="960" Height="450"/>
+        <Grid Height="960" Width="540">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="23*"/>
+                <RowDefinition Height="73*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="TB1" Text="你好 , User" Foreground="#1e1e1e" FontSize="0.1" Height="40" TextAlignment="Center" Opacity="0"/>
+            <mn:MTopBar TextBrush="#1e1e1e" HoverBrush="Violet" VerticalAlignment="Top" Title="舌象云诊"/>
+            <mn:MNavigateBox x:Name="Pages" Grid.ZIndex="2"  Width="540" Height="850" Margin="0,40,0,70" Grid.RowSpan="2"/>
+            <Border x:Name="Selectors" CornerRadius="0" BorderThickness="0" Opacity="0" BorderBrush="White" Height="0" Width="300" Margin="120,199,120,461" Grid.RowSpan="2">
+                <ScrollViewer  VerticalScrollBarVisibility="Hidden">
+                    <StackPanel>
+                        <local:TButton x:Name="Select1" Text="今日资讯" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select2" Click="Select2_Click" Text="舌象预测" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select3" Text="在线诊断" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select4" Text="健康追踪" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select5" Text="社区" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select6" Text="发贴子" FontSize="30" BorderThickness="0"/>
+                        <local:TButton x:Name="Select7" Text="…" Foreground="Black" FontSize="30" BorderThickness="0"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+            <mn:MNavigateBox Height="800" Width="540" Margin="0,60,0,100" Grid.RowSpan="2"/>
         </Grid>
     </Viewbox>
 </Window>

@@ -1,4 +1,6 @@
 ﻿global using MinimalisticWPF;
+using FastHotKeyForWPF;
+using Microsoft.Win32;
 using OpenCVSharpDemo;
 using System.Text;
 using System.Windows;
@@ -10,93 +12,127 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TCMAssistant.Page;
 using TCMAssistant.Service;
 
 namespace TCMAssistant
 {
     public partial class MainWindow : Window
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-            NowPage.Navigate(typeof(ConfigPage));
-            var r=HSV.Parse(FileTool.ImageRead()).Assistant();
-            MessageBox.Show($"{r}");
-            //MessageBox.Show($"{r.H}\n{r.S}\n{r.V}");
-        }
-
-        private static TransitionBoard<Border> _noselected = Transition.CreateBoardFromType<Border>()
-            .SetProperty(x => x.Background, Brushes.Gray)
-            .SetProperty(x => x.Opacity, 0.6)
+        public static TransitionBoard<TButton> _selected = Transition.CreateBoardFromType<TButton>()
+            .SetProperty(x => x.Height, 50)
+            .SetProperty(x => x.FontSize, 50)
+            .SetProperty(x => x.Foreground, Brushes.Violet)
+            .SetProperty(x => x.CornerRadius, new CornerRadius(5))
+            .SetParams((x) =>
+            {
+                x.Duration = 0.3;
+                x.FrameRate = 120;
+            });
+        public static TransitionBoard<TButton> _noselected = Transition.CreateBoardFromType<TButton>()
+            .SetProperty(x => x.Height, 30)
+            .SetProperty(x => x.FontSize, 30)
+            .SetProperty(x => x.Foreground, "#1e1e1e".ToBrush())
+            .SetProperty(x => x.CornerRadius, new CornerRadius(0))
             .SetParams((x) =>
             {
                 x.Duration = 0.2;
+                x.FrameRate = 120;
             });
-        private static TransitionBoard<Border> _selected = Transition.CreateBoardFromType<Border>()
-            .SetProperty(x => x.Background, Brushes.Cyan)
+        public MainWindow()
+        {
+            InitializeComponent();
+            LoadStartAnimation();
+            LoadMButtonAnimation();
+        }
+
+        private void LoadStartAnimation()
+        {
+            TB1.Transition()
             .SetProperty(x => x.Opacity, 1)
-            .SetParams((x) =>
+            .SetProperty(x => x.FontSize, 30)
+            .SetParams((p) =>
             {
-                x.Duration = 0.5;
-            });
-
-        private int _pagetype = 1;
-        public int PageType//当前页面标号
-        {
-            get => _pagetype;
-            set
-            {
-                if (value != _pagetype)
+                p.Duration = 0.8;
+            })
+            .Start();
+            Selectors.Transition()
+                .SetProperty(x => x.Opacity, 1)
+                .SetProperty(x => x.Height, 300)
+                .SetParams((p) =>
                 {
-                    PageLightChange(_pagetype, value);
-                    _pagetype = value;
-                }
-            }
+                    p.Duration = 0.8;
+                })
+                .Start();
+        }
+        private void LoadMButtonAnimation()
+        {
+            Select1.MouseEnter += (sender, e) =>
+            {
+                Select1.BeginTransition(_selected);
+            };
+            Select1.MouseLeave += (sender, e) =>
+            {
+                Select1.BeginTransition(_noselected);
+            };
+            Select2.MouseEnter += (sender, e) =>
+            {
+                Select2.BeginTransition(_selected);
+            };
+            Select2.MouseLeave += (sender, e) =>
+            {
+                Select2.BeginTransition(_noselected);
+            };
+            Select3.MouseEnter += (sender, e) =>
+            {
+                Select3.BeginTransition(_selected);
+            };
+            Select3.MouseLeave += (sender, e) =>
+            {
+                Select3.BeginTransition(_noselected);
+            };
+            Select4.MouseEnter += (sender, e) =>
+            {
+                Select4.BeginTransition(_selected);
+            };
+            Select4.MouseLeave += (sender, e) =>
+            {
+                Select4.BeginTransition(_noselected);
+            };
+            Select5.MouseEnter += (sender, e) =>
+            {
+                Select5.BeginTransition(_selected);
+            };
+            Select5.MouseLeave += (sender, e) =>
+            {
+                Select5.BeginTransition(_noselected);
+            };
+            Select6.MouseEnter += (sender, e) =>
+            {
+                Select6.BeginTransition(_selected);
+            };
+            Select6.MouseLeave += (sender, e) =>
+            {
+                Select6.BeginTransition(_noselected);
+            };
+            Select7.MouseEnter += (sender, e) =>
+            {
+                Select7.BeginTransition(_selected);
+            };
+            Select7.MouseLeave += (sender, e) =>
+            {
+                Select7.BeginTransition(_noselected);
+            };
         }
 
-        private void PageLightChange(int last, int next)
+        private void Select2_Click(object sender, RoutedEventArgs e)
         {
-            switch (last)
-            {
-                case 1:
-                    B1.BeginTransition(_noselected);
-                    break;
-                case 2:
-                    B2.BeginTransition(_noselected);
-                    break;
-                case 3:
-                    B3.BeginTransition(_noselected);
-                    break;
-            }
-            switch (next)
-            {
-                case 1:
-                    B1.BeginTransition(_selected);
-                    break;
-                case 2:
-                    B2.BeginTransition(_selected);
-                    break;
-                case 3:
-                    B3.BeginTransition(_selected);
-                    break;
-            }
+            Pages.Width = 540;
+            Pages.Navigate(typeof(HSVAssistant));
         }
 
-        private void Config_Click(object sender, MouseButtonEventArgs e)
+        private void TButton_Click(object sender, RoutedEventArgs e)
         {
-            NowPage.Navigate(typeof(ConfigPage));
-            PageType = 1;
-        }
-        private void HSV_Click(object sender, MouseButtonEventArgs e)
-        {
-            NowPage.Navigate(typeof(HSVPage));
-            PageType = 2;
-        }
-        private void AI_Click(object sender, MouseButtonEventArgs e)
-        {
-            NowPage.Navigate(typeof(AIPage));
-            PageType = 3;
+            Pages.Width = 0; ;
         }
     }
 }

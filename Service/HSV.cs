@@ -39,33 +39,35 @@ namespace TCMAssistant.Service
         {
             var result = string.Empty;
 
-            if (H > 50)
+            if (H > 100 && H < 120)
             {
-                result += "气血旺盛";
+                result += "气血瘀滞 ";
             }
-            else if (H < 50 && H > 30)
+            else if (H > 120)
             {
-                result += "气血";
+                result += "气血虚 （或有淤血）";
             }
-            else if (H < 30)
+            else if (H < 75)
             {
-                result += "气血";
+                result += "气虚 ";
             }
-            else if (S > 0)
-            {
-                result += "湿气";
-            }
-            else if (S > 0)
-            {
-                result += "湿气";
-            }
-            else if (V > 0)
+
+            if (S > 84 && S < 120)
             {
                 result += "";
             }
-            else if (V > 0)
+            else if (S <= 84 && S > 40)
             {
-                result += "";
+                result += " ";
+            }
+
+            if (V > 205 && V <= 230)
+            {
+                result += "阳虚";
+            }
+            else if (V > 230)
+            {
+                result += "火旺";
             }
 
             return result;
